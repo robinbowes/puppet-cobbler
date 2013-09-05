@@ -8,9 +8,6 @@ class cobbler(
   $serializer_pretty_json = 1
 ){
 
-  require
-    ::apache
-
   class{'::cobbler::install':
     debmirror => $debmirror,
     fencing => $fencing,

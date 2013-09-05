@@ -3,6 +3,9 @@ class cobbler::install(
   $fencing
 ){
 
+  require
+    ::apache
+
   case $debmirror {
     true, false: {
       $debmirror_install = $debmirror
@@ -40,5 +43,9 @@ class cobbler::install(
       ensure => installed
     }
   }
+
+  # restart apache when cobbler installed
+  Package['cobbler']~>
+  Class['::apache']
 
 }

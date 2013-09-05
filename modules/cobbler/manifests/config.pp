@@ -11,7 +11,11 @@ class cobbler::config(
 
   if $selinux {
 
-    selboolean{'httpd_can_network_connect_cobbler':
+    $flags = [
+      'cobbler_can_network_connect',
+      'httpd_can_network_connect_cobbler',
+    ]
+    selboolean{$flags:
       persistent => true,
       value      => on,
     }

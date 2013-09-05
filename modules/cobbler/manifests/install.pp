@@ -3,7 +3,7 @@ class cobbler::install(
   $fencing
 ){
 
-  require
+  include
     ::apache
 
   case $debmirror {
@@ -29,8 +29,9 @@ class cobbler::install(
     'syslinux',
   ]
 
+  # restart apache when cobbler installed
   package{$packages:
-    ensure => installed
+    ensure => installed,
   }
 
   if $debmirror_install {
@@ -44,8 +45,8 @@ class cobbler::install(
     }
   }
 
-  # restart apache when cobbler installed
+  # restart apache 
   Package['cobbler']~>
-  Class['::apache']
+  Class['::apache::service']
 
 }

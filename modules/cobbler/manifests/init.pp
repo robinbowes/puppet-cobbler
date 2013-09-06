@@ -12,6 +12,7 @@ class cobbler(
     debmirror => $debmirror,
     fencing => $fencing,
   }->
+  class{'::cobbler::security':}->
   class{'::cobbler::config':
     server                   => $server,
     next_server              => $next_server,

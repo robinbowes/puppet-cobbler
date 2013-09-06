@@ -11,6 +11,14 @@ class cobbler::config(
 
   if $selinux {
 
+    file{'/usr/share/selinux/targeted/cobbler_unconfined.pp':
+      source => 'puppet:///modules/cobbler/cobbler_unconfined.pp';
+    }
+
+    selmodule{'cobbler_unconfined':
+      ensure => present,
+    }
+
     $flags = [
       'cobbler_can_network_connect',
       'httpd_can_network_connect_cobbler',

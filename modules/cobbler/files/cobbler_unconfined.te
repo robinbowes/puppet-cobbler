@@ -1,0 +1,5 @@
+policy_module(cobbler_unconfined, 1.0)    
+gen_require(
+  type cobblerd_t;    
+) 
+unconfined_domain(cobblerd_t)
